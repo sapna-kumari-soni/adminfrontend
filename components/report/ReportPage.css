@@ -1,0 +1,143 @@
+/* src/components/ReportPage.css
+.report-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .report-page h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+   */
+   /* src/components/ReportPage.css */
+.report-page {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .report-page h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 700;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+  }
+  
+  .search-bar {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .search-bar input {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .search-bar input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+  }
+  
+  .report-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .report-table thead {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .report-table th, .report-table td {
+    padding: 12px;
+    text-align: left;
+    font-size: 1rem;
+  }
+  
+  .report-table th {
+    font-weight: 700;
+  }
+  
+  .report-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .report-table tbody tr:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .report-table tbody td {
+    border-bottom: 1px solid #ddd;
+  }
+  .stats-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .stats-button:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    .report-page {
+      padding: 15px;
+    }
+  
+    .report-page h1 {
+      font-size: 2rem;
+    }
+  
+    .search-bar input {
+      font-size: 0.9rem;
+    }
+  
+    .report-table th, .report-table td {
+      font-size: 0.9rem;
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .report-page {
+      padding: 10px;
+    }
+  
+    .report-page h1 {
+      font-size: 1.5rem;
+    }
+  
+    .search-bar input {
+      font-size: 0.8rem;
+    }
+  
+    .report-table th, .report-table td {
+      font-size: 0.8rem;
+      padding: 8px;
+    }
+  }
+  
