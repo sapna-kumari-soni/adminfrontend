@@ -8,6 +8,8 @@ import HelpSupportPage from "../components/helpsupport/HelpSupportPage.jsx";
 //import Dashboard from "./screen/dashboard/DashBoardScreen.jsx";
 import PageNotFound from "./screen/error/PageNotFound.jsx";
 import ReportPage from "../components/report/ReportPage.jsx";
+import Chart from "../components/chart/Chart.jsx";
+import Table from "../components/table/Table.jsx";
 
 function App() {
   return (
@@ -17,10 +19,10 @@ function App() {
       <Routes>
         <Route path="/" element={<BaseLayout />}>
           <Route index element={<ReportPage />} />
-          {/* <Route path="user-management" element={<UserManagement />} />
-          <Route path="property-management" element={<PropertyManagement />} />*/}
+          <Route path="chart" element={<Chart />} />
           <Route path="settings" element={<SettingPage />} />
           <Route path="help-support" element={<HelpSupportPage />} />
+          <Route path="stats" element={<Table />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>

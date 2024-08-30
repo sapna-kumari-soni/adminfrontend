@@ -1,33 +1,6 @@
-// import React from 'react'
-// import './Profile.css'
-// const Profile = () => {
-//   return (
-//     <div className='profile'>
-//         <div className='user-profile'>
-//             <div className='user-details'>
-//                 <img src='/' alt=''/>
-//                 <h3 className='username'>admin</h3>
-//                 <span className='email'>admin@gmail.com</span>
-//                 <div className="additional-info">
-//             <div className="info-item">
-//               <span className="info-label">Mobile Number:</span>
-//               <span className="info-value">+1234567890</span>
-//             </div>
-//             <div className="info-item">
-//               <span className="info-label">Address:</span>
-//               <span className="info-value">123 Elm Street, Springfield</span>
-//             </div>
-//           </div>
-//             </div>
-//         </div>
-//     </div>
-//   )
-// }
 
-// export default Profile
 import React, { useState } from 'react';
 import './Profile.css';
-import { AiOutlineEdit } from "react-icons/ai";
 import { AiFillEdit } from "react-icons/ai";
 
 
