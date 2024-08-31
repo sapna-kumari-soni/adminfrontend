@@ -10,6 +10,7 @@ import PageNotFound from "./screen/error/PageNotFound.jsx";
 import ReportPage from "../components/report/ReportPage.jsx";
 import Chart from "../components/chart/Chart.jsx";
 import Table from "../components/table/Table.jsx";
+import StatsTable from "../components/stats/StatsTable.jsx";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
           <Route path="chart" element={<Chart />} />
           <Route path="settings" element={<SettingPage />} />
           <Route path="help-support" element={<HelpSupportPage />} />
-          <Route path="stats" element={<Table />} />
+          <Route path="results" element={<Table />} />
+          <Route path="stats" element={<StatsTable />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>

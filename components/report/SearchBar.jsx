@@ -25,10 +25,12 @@
 import React, { useState, useEffect } from 'react';
 import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai'; // Icons for active/inactive status
 import './SearchBar.css'; // Import CSS for dropdown styling
+import { useNavigate } from 'react-router-dom'; 
 
 const SearchBar = ({ onSearch, users }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false); 
+  const navigate = useNavigate(); 
 
   const handleChange = (event) => {
     const value = event.target.value;
@@ -53,6 +55,9 @@ const SearchBar = ({ onSearch, users }) => {
   const filteredUsers = users.filter(user =>
     user.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  const handleSearchClick = () => {
+    navigate('/results'); // Navigate to the 'results' page
+  };
 
   return (
     <div className="search-bar-container">
@@ -64,6 +69,7 @@ const SearchBar = ({ onSearch, users }) => {
         className="search-input"
         onFocus={() => setShowDropdown(true)}
       />
+      <button className='search-bar-btn' onClick={handleSearchClick}>Search</button>
       {showDropdown && (
         <div className="dropdown-list">
           {filteredUsers.length > 0 ? (

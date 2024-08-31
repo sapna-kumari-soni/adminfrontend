@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 // import { ThemeContext } from "../../src/context/ThemeContext";
-import { FaArrowUpLong } from "react-icons/fa";
+import { FaArrowUpLong } from "react-icons/fa6";
 import "./Chart.css";
 
 const data = [

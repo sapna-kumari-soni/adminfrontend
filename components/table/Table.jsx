@@ -1,75 +1,82 @@
 import React, { useState } from 'react';
-import TableAction from "./TableAction";
 import "./Table.css";
-import { FaSearch } from 'react-icons/fa'; // Import the search icon from react-icons
+import { FaSearch } from 'react-icons/fa'; 
 import { AiFillEdit } from "react-icons/ai";
 
+const getOfferCounts = () => {
+  const counts = {
+    pending: 0,
+    expired: 0,
+    rejected: 0,
+    connected: 0,
+    "not-connected": 0,
+    "ni-without-offer": 0,
+    paid: 0,
+  };
 
+  TABLE_DATA.forEach(item => {
+    if (counts[item.status] !== undefined) {
+      counts[item.status]++;
+    }
+  });
+
+  return counts;
+};
 
 const TABLE_HEADS = [
-  "Products",
-  "Order ID",
+  "Contact",
   "Date",
-  "Customer name",
-  "Status",
-  "Amount",
-  "Action",
+  "Name",
+  "Mobile",
+  "Email",
+  "Offer Start Date",
+  "Offer",
+  "Qty",
+  "Type",
+  "Total",
+  "End Date",
+  "Action"
 ];
 
 const TABLE_DATA = [
   {
-    id: 100,
-    name: "Iphone 13 Pro",
-    order_id: 11232,
-    date: "Jun 29,2022",
-    customer: "Afaq Karim",
-    status: "delivered",
-    amount: 400,
+    contact: "8252342435",
+    date: "31-08-2024",
+    name: "Sapna",
+    mobile: "8252342435",
+    email: "sapnakr12@gmail.com",
+    offerStartDate: "02-08-2024",
+    offer: "3",
+    qty: "4",
+    type: "none",
+    total: "20",
+    endDate: "10-10-2024",
   },
   {
-    id: 101,
-    name: "Macbook Pro",
-    order_id: 11232,
-    date: "Jun 29,2022",
-    customer: "Afaq Karim",
-    status: "pending",
-    amount: 288,
+    contact: "8252342435",
+    date: "31-08-2024",
+    name: "Sapna",
+    mobile: "8252342435",
+    email: "sapnakr12@gmail.com",
+    offerStartDate: "02-08-2024",
+    offer: "3",
+    qty: "4",
+    type: "none",
+    total: "20",
+    endDate: "10-10-2024",
   },
   {
-    id: 102,
-    name: "Apple Watch",
-    order_id: 11232,
-    date: "Jun 29,2022",
-    customer: "Afaq Karim",
-    status: "canceled",
-    amount: 500,
-  },
-  {
-    id: 103,
-    name: "Microsoft Book",
-    order_id: 11232,
-    date: "Jun 29,2022",
-    customer: "Afaq Karim",
-    status: "delivered",
-    amount: 100,
-  },
-  {
-    id: 104,
-    name: "Apple Pen",
-    order_id: 11232,
-    date: "Jun 29,2022",
-    customer: "Afaq Karim",
-    status: "delivered",
-    amount: 60,
-  },
-  {
-    id: 105,
-    name: "Airpods",
-    order_id: 11232,
-    date: "Jun 29,2022",
-    customer: "Afaq Karim",
-    status: "delivered",
-    amount: 80,
+    contact: "8252342435",
+    date: "31-08-2024",
+    name: "Sapna",
+    mobile: "8252342435",
+    email: "sapnakr12@gmail.com",
+    offerStartDate: "02-08-2024",
+    offer: "3",
+    qty: "4",
+    type: "none",
+    total: "20",
+    endDate: "10-10-2024",
   },
 ];
   
@@ -78,6 +85,18 @@ const Table = () => {
   const [filter, setFilter] = useState(""); // State to hold the selected filter
   const [title, setTitle] = useState("PENDING OFFERS"); // State to hold the table title
   const [searchTerm, setSearchTerm] = useState("");
+  const [offerCounts, setOfferCounts] = useState(getOfferCounts());
+  // useEffect(() => {
+  //   // Fetch data from an external source (e.g., an API)
+  //   fetch('https://api.example.com/offers') // Replace with your API endpoint
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       setData(data); // Set fetched data to state
+  //       setLoading(false); // Set loading to false once data is fetched
+  //     })
+  //     .catch(error => console.error('Error fetching data:', error));
+  // }, []);
+  
 
   // Function to get the filtered data based on the selected filter
   const getFilteredData = () => {
@@ -146,13 +165,34 @@ const Table = () => {
         <div className="table-header">
           <select className="table-select" onChange={handleFilterChange}>
             <option value="">Select </option>
-            <option value="pending">Pending Offers</option>
-            <option value="expired">Expired Offers</option>
-            <option value="rejected">REJECTED</option>
-            <option value="connected">CONNECTED</option>
-            <option value="not-connected">NOT CONNECTED</option>
-            <option value="ni-without-offer">NI WITHOUT OFFER</option>
-            <option value="paid">PAID</option>
+            <option value="pending">
+              <span className='offer-text'>Pending Offers</span> 
+              <span className='offer-count'>{offerCounts.pending || 0}</span>
+            </option>
+            <option value="expired">
+              Expired Offers 
+              <span>{offerCounts.expired || 0}</span>
+            </option>
+            <option value="rejected">
+              Rejected 
+              <span>{offerCounts.rejected || 0}</span>
+            </option>
+            <option value="connected">
+              Connected 
+              <span>{offerCounts.connected || 0}</span>
+            </option>
+            <option value="not-connected">
+              Not Connected 
+              <span>{offerCounts["not-connected"] || 0}</span>
+            </option>
+            <option value="ni-without-offer">
+              NI Without Offer 
+              <span>{offerCounts["ni-without-offer"] || 0}</span>
+            </option>
+            <option value="paid">
+              Paid 
+              <span>{offerCounts.paid || 0}</span>
+            </option>
           </select>
           <h4 className="data-table-title">{title}</h4>
           <div className='table-search-container'>
@@ -179,24 +219,30 @@ const Table = () => {
             </tr>
           </thead>
           <tbody>
-            {TABLE_DATA?.map((dataItem) => {
+            {TABLE_DATA?.map((dataItem,index) => {
               return (
-                <tr key={dataItem.id}>
-                  <td>{dataItem.name}</td>
-                  <td>{dataItem.order_id}</td>
+                <tr key={index}>
+                  <td>{dataItem.contact}</td>
                   <td>{dataItem.date}</td>
-                  <td>{dataItem.customer}</td>
-                  <td>
+                  <td>{dataItem.name}</td>
+                  <td>{dataItem.mobile}</td>
+                  <td>{dataItem.email}</td>
+                  <td>{dataItem.offerStartDate}</td>
+                  <td>{dataItem.offer}</td>
+                  <td>{dataItem.qty}</td>
+                  <td>{dataItem.type}</td>
+                  <td>{dataItem.total}</td>
+                  <td>{dataItem.endDate}</td>
+                  {/* <td>
                     <div className="dt-status">
                       <span
                         className={`dt-status-dot dot-${dataItem.status}`}
                       ></span>
                       <span className="dt-status-text">{dataItem.status}</span>
                     </div>
-                  </td>
-                  <td>${dataItem.amount.toFixed(2)}</td>
+                  </td> */}
+                  {/* <td>${dataItem.amount.toFixed(2)}</td> */}
                   <td className="dt-cell-action">
-                    {/* <TableAction /> */}
                     <button type="button" className="action-dropdown-btn">
                     <AiFillEdit/><span className='button-font'>Edit</span>
                     </button>

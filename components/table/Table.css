@@ -14,6 +14,7 @@
       flex-grow: 1; 
       text-align: center;
       margin: 20px;
+      color:#11a3a5;
     }
     .table-header {
       display: flex;
@@ -28,8 +29,25 @@
       font-size: 14px;
       border: 1px solid #ccc;
       border-radius: 4px;
-      margin-right: 20px; /* Space between select box and title */
+      /* margin-right: 20px; Space between select box and title */
     }
+    .table-select option{
+      display: flex;
+      justify-content: space-between; /* Aligns the text and count */
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+    }
+    .offer-text {
+      flex: 1; /* Allow text to take available space */
+      text-align: left; /* Align text to the left */
+    }
+    
+    .offer-count {
+      flex-shrink: 0; /* Prevent shrinking */
+      text-align: right; /* Align count to the right */
+    }
+    
     /* .table-search-container {
       display: flex;
       align-items: center;
@@ -50,9 +68,9 @@
     }
     .table-search-btn {
       padding: 8px 16px;
-      border: 1px solid #68a8dd;
+      border: 1px solid #11a3a5;
       border-radius: 0 4px 4px 0; /* Rounded corners on the right side */
-      background-color: #68a8dd;
+      background-color: #11a3a5;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -66,8 +84,8 @@
       color: #333; /* Icon color */
     }
     .data-table-diagram {
-      border-radius: 6px;
-      border: 1px solid #f2f4ff !important;
+      /* border-radius: 6px; */
+      border: 2px solid #b9b9ba !important;
       overflow-x: scroll;
   
       &::-webkit-scrollbar {
@@ -101,18 +119,22 @@
         }
   
         thead {
-          text-align: left;
+          text-align: center;
           font-size: 17px;
-          background-color: #f2f4ff;
+          background-color: #b9b9ba;
   
-          th {
+          /* th {
             &:last-child {
               text-align: center;
             }
-          }
+          } */
         }
-        
-  
+        tbody{
+          text-align: center;
+        }
+        td{
+          border:1px solid #b9b9ba;
+        }
         .dt-cell-action {
           text-align: center;
         }
@@ -120,7 +142,7 @@
         .dt-status {
           display: flex;
           align-items: center;
-          justify-content: flex-start;
+          justify-content: space-around;
           column-gap: 6px;
   
           .dt-status-dot {
