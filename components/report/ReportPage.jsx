@@ -1,7 +1,6 @@
 // src/components/ReportPage.js
 import React, { useState } from 'react';
 import SearchBar from './SearchBar';
-import ReportTable from './ReportTable';
 import { useNavigate } from 'react-router-dom';
 import './ReportPage.css';
 import Profile from '../profile/Profile';
@@ -27,7 +26,6 @@ const ReportPage = () => {
     <div className="report-page">
       <Profile />
       <SearchBar onSearch={setSearchTerm} users={sampleReports}/>
-      {/* <ReportTable reports={filteredReports} /> */}
       <button className="stats-button" onClick={handleStatsClick}>
         Stats
       </button>

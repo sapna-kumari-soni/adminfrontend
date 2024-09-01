@@ -1,0 +1,110 @@
+/* src/components/ReportTable.css
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .report-table th,
+  .report-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    color: black;
+  }
+  
+  .report-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .report-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+   */
+
+/* src/editable-tableTable.css */
+
+.table-container {
+  width: 90%;
+  margin: 20px auto;
+  overflow-x: auto; /* Add horizontal scroll for smaller screens */
+}
+
+.editable-table-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 16px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.editable-table-table th,
+.editable-table-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.editable-table-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.editable-table-table td input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Media Queries for editable-tableness */
+@media (max-width: 768px) {
+  .editable-table-table th,
+  .editable-table-table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .editable-table-table {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .editable-table-table,
+  .editable-table-table thead,
+  .editable-table-table tbody,
+  .editable-table-table th,
+  .editable-table-table td,
+  .editable-table-table tr {
+    display: block;
+  }
+
+  .editable-table-table tr {
+    margin-bottom: 15px;
+  }
+
+  .editable-table-table th {
+    display: none; /* Hide table headers */
+  }
+
+  .editable-table-table td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  .editable-table-table td::before {
+    content: attr(data-label); /* Use the data-label attribute to add labels */
+    position: absolute;
+    left: 0;
+    width: 45%;
+    padding-left: 15px;
+    font-weight: bold;
+    text-align: left;
+  }
+}

@@ -1,11 +1,12 @@
 .content-area-charts {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns:100%;
     gap: 16px;
+    
   
-    @media (max-width: 992px) {
+    /* @media (max-width: 992px) {
       grid-template-columns: 100%;
-    }
+    } */
   }
   
   .bar-chart {

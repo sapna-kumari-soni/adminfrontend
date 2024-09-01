@@ -11,6 +11,7 @@ import ReportPage from "../components/report/ReportPage.jsx";
 import Chart from "../components/chart/Chart.jsx";
 import Table from "../components/table/Table.jsx";
 import StatsTable from "../components/stats/StatsTable.jsx";
+import ManuallyTable from "../components/stats/ManuallyTable.jsx";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="help-support" element={<HelpSupportPage />} />
           <Route path="results" element={<Table />} />
           <Route path="stats" element={<StatsTable />} />
+          <Route path="manuallyedit" element={<ManuallyTable />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>

@@ -6,6 +6,14 @@
     background-color: #f9f9f9;
     overflow-x: auto; /* Enable horizontal scrolling on small screens */
   }
+  .stats-table-title {
+    font-size: 2rem;
+    font-weight: bold;
+    flex-grow: 1; 
+    text-align: center;
+    margin: 20px;
+    color:#28282c;
+  }
   
   .stats-table {
     width: 100%;
@@ -22,7 +30,7 @@
   }
   
   .stats-table th {
-    background-color: #4CAF50;
+    background-color: #686869;
     color: white;
   }
   
@@ -33,6 +41,37 @@
   .stats-table tr:hover {
     background-color: #ddd;
   }
+  .dt-cell-action {
+    text-align: center;
+  }
+
+  .dt-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    column-gap: 6px;
+
+    .dt-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 100%;
+
+      &.dot-Away {
+        background-color: #f29a2e;
+      }
+      &.dot-Offline {
+        background-color: #ef0606;
+      }
+      &.dot-Online {
+        background-color: #4ce13f;
+      }
+    }
+
+    .dt-status-text {
+      text-transform: capitalize;
+    }
+  }
+
   
   /* Responsive styles */
   @media (max-width: 768px) {

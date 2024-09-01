@@ -86,6 +86,8 @@ const Table = () => {
   const [title, setTitle] = useState("PENDING OFFERS"); // State to hold the table title
   const [searchTerm, setSearchTerm] = useState("");
   const [offerCounts, setOfferCounts] = useState(getOfferCounts());
+  const [editIdx, setEditIdx] = useState(-1); // State to track which row is being edited
+
   // useEffect(() => {
   //   // Fetch data from an external source (e.g., an API)
   //   fetch('https://api.example.com/offers') // Replace with your API endpoint
@@ -159,6 +161,23 @@ const Table = () => {
   const handleSearchClick = () => {
     // You can add additional search logic here if needed
   };
+  // Handle changes to table cells
+  const handleChange = (e, index, key) => {
+    const newData = [...data];
+    newData[index][key] = e.target.value;
+    setData(newData);
+  };
+
+  // Save changes and exit editing mode
+  const handleSave = () => {
+    setEditIdx(-1);
+    console.log("Data saved: ", data); // Here, you would typically send updated data to the server
+  };
+
+  // Cancel editing mode without saving
+  const handleCancel = () => {
+    setEditIdx(-1);
+  };
   return (
     <section className="content-area-table">
       <div className="data-table-info">
@@ -226,7 +245,18 @@ const Table = () => {
                   <td>{dataItem.date}</td>
                   <td>{dataItem.name}</td>
                   <td>{dataItem.mobile}</td>
-                  <td>{dataItem.email}</td>
+                  {/* <td>{dataItem.email}</td> */}
+                  <td>
+                {editIdx === index ? (
+                  <input
+                    type="text"
+                    value={index.email}
+                    onChange={(e) => handleChange(e, index, "email")}
+                  />
+                ) : (
+                  dataItem.email
+                )}
+              </td>
                   <td>{dataItem.offerStartDate}</td>
                   <td>{dataItem.offer}</td>
                   <td>{dataItem.qty}</td>
@@ -242,11 +272,27 @@ const Table = () => {
                     </div>
                   </td> */}
                   {/* <td>${dataItem.amount.toFixed(2)}</td> */}
-                  <td className="dt-cell-action">
+                  {/* <td className="dt-cell-action">
                     <button type="button" className="action-dropdown-btn">
                     <AiFillEdit/><span className='button-font'>Edit</span>
                     </button>
-                  </td>
+                  </td> */}
+                  <td className="dt-cell-action">
+                  {editIdx === index ? (
+                  <>
+                    <button type="button" className="action-dropdown-btn" onClick={handleSave}>
+                    <span className='button-font'>Save</span>
+                    </button>
+                    <button type="button" className="action-dropdown-btn" onClick={handleCancel}>
+                    <span className='button-font'>Cancel</span>
+                    </button>
+                  </>
+                ) : (
+                  <button type="button" className="action-dropdown-btn" onClick={() => setEditIdx(index)}>
+                    <AiFillEdit/><span className='button-font'>Edit</span>
+                  </button>
+                )}
+              </td>
                 </tr>
               );
             })}

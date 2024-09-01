@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React from "react";
 import {
   BarChart,
   Bar,
@@ -78,14 +78,14 @@ const ABarChart = () => {
   return (
     <div className="bar-chart">
       <div className="bar-chart-info">
-        <h5 className="bar-chart-title">Total Revenue</h5>
-        <div className="chart-info-data">
+        <h5 className="bar-chart-title">Sales</h5>
+        {/* <div className="chart-info-data">
           <div className="info-data-value">$50.4K</div>
           <div className="info-data-text">
             <FaArrowUpLong />
             <p>5% than last month.</p>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="bar-chart-wrapper">
         <ResponsiveContainer width="100%" height="100%">
@@ -104,21 +104,16 @@ const ABarChart = () => {
               padding={{ left: 10 }}
               dataKey="month"
               tickSize={0}
-              axisLine={false}
-              tick={{
-                fill: `${theme === LIGHT_THEME ? "#676767" : "#f3f3f3"}`,
-                fontSize: 14,
-              }}
+              // axisLine={false}
+              tick={{ fill: "#676767", fontSize: 14 }}
             />
             <YAxis
               padding={{ bottom: 10, top: 10 }}
               tickFormatter={formatYAxisLabel}
               tickCount={6}
-              axisLine={false}
+              // axisLine={false}
               tickSize={0}
-              tick={{
-                fill: `${theme === LIGHT_THEME ? "#676767" : "#f3f3f3"}`,
-              }}
+              tick={{ fill: "#676767" }}
             />
             <Tooltip
               formatter={formatTooltipValue}

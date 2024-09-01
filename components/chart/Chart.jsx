@@ -1,5 +1,6 @@
 import ABarChart from "./ABarChart"
 // import AreaProgressChart from "./AreaProgressChart"
+import "./Chart.css"
 
 const Chart = () => {
   return (

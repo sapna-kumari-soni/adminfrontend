@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import './StatsTable.css'; // Import CSS file for styling
+import { useNavigate } from 'react-router-dom'; 
+
 
 const StatsTable = () => {
   const [data, setData] = useState([]);  // State to hold fetched data
   const [loading, setLoading] = useState(true);  // State to manage loading state
+  const navigate = useNavigate(); 
+
   useEffect(() => {
     // Simulate fetching data from an external source (e.g., an API)
     const mockData = [
       {
         agent: 'John Doe',
-        status: 'Active',
+        status: 'Online',
         attempted: 100,
         noOfOffers: 15,
         loginTime: '08:00 AM',
@@ -28,7 +32,26 @@ const StatsTable = () => {
       },
       {
         agent: 'Jane Smith',
-        status: 'Inactive',
+        status: 'Offline',
+        attempted: 80,
+        noOfOffers: 10,
+        loginTime: '09:00 AM',
+        awayTime: '01:00',
+        logoutTime: '03:00 PM',
+        calls1To3Min: 20,
+        calls3To5Min: 18,
+        calls5To7Min: 15,
+        calls7To10Min: 5,
+        calls10To20Min: 2,
+        calls20PlusMin: 1,
+        totalTalkTime: '3h 15m',
+        noOfSales: 5,
+        expectedSales: 7,
+        totalAmount: '$800'
+      },
+      {
+        agent: 'Jane Smith',
+        status: 'Away',
         attempted: 80,
         noOfOffers: 10,
         loginTime: '09:00 AM',
@@ -53,6 +76,9 @@ const StatsTable = () => {
       setLoading(false);  // Set loading to false once data is fetched
     }, 1000);
   }, []);
+  const handleSearchClick = () => {
+    navigate('/manuallyedit'); // Navigate to the 'results' page
+  };
 
   // useEffect(() => {
   //   // Fetch data from an external source (e.g., an API)
@@ -67,7 +93,8 @@ const StatsTable = () => {
 
   return (
     <div className="stats-table-container">
-      <h2>Agent Stats</h2>
+      <h2 className='stats-table-title'>Agent Stats</h2>
+      <button className='search-bar-btn' onClick={handleSearchClick}>Manually Edit</button>
       {loading ? (
         <p>Loading data...</p>  // Display loading message while fetching data
       ) : (
@@ -97,7 +124,15 @@ const StatsTable = () => {
             {data.map((row, index) => (  // Dynamically render table rows based on fetched data
               <tr key={index}>
                 <td>{row.agent}</td>
-                <td>{row.status}</td>
+                {/* <td>{row.status}</td> */}
+                <td>
+                    <div className="dt-status">
+                      <span
+                        className={`dt-status-dot dot-${row.status}`}
+                      ></span>
+                      <span className="dt-status-text">{row.status}</span>
+                    </div>
+                  </td>
                 <td>{row.attempted}</td>
                 <td>{row.noOfOffers}</td>
                 <td>{row.loginTime}</td>
