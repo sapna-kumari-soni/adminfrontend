@@ -1,8 +1,9 @@
 import { useContext, useEffect, useRef } from "react";
 import { ThemeContext } from "../../src/context/ThemeContext.jsx";
 import {MdOutlineGridView} from "react-icons/md";
+import { FaTableList } from "react-icons/fa6";
 import { FaPeopleArrows } from "react-icons/fa6";
-import { IoSettingsOutline } from "react-icons/io5";
+import { IoMdSettings } from "react-icons/io";
 import { Link , useLocation } from "react-router-dom";
 import './Sidebar.css';
 import { SidebarContext } from "../../src/context/SidebarContext.jsx";
@@ -12,14 +13,15 @@ import { FaChartBar } from "react-icons/fa";
 
 const Sidebar = () => {
   const { theme } = useContext(ThemeContext);
-  const { isSidebarOpen, closeSidebar } = useContext(SidebarContext);
+  const { isSidebarOpen, toggleSidebar , closeSidebar } = useContext(SidebarContext);
   const navbarRef = useRef(null);
   const location = useLocation(); 
+
   const handleClickOutside = (event) => {
     if (
       navbarRef.current &&
       !navbarRef.current.contains(event.target) &&
-      event.target.className !== "sidebar-oepn-btn"
+      event.target.className !== "sidebar-open-btn"
     ) {
       closeSidebar();
     }
@@ -42,9 +44,11 @@ const Sidebar = () => {
     >
       <div className="sidebar-top">
         <div className="sidebar-brand">
-          <span className="sidebar-brand-text">Trip It Today</span>
+          <span className="sidebar-brand-logo">
+            <img src="/img/logo.png"></img>
+          </span>
         </div>
-        <button className="sidebar-close-btn" onClick={closeSidebar}>
+        <button className="sidebar-close-btn" onClick={toggleSidebar}>
           <IoMdClose />
         </button>
       </div>
@@ -68,6 +72,15 @@ const Sidebar = () => {
                 <span className="menu-link-text">Chart</span>
               </Link>
             </li>
+
+            <li className="menu-item">
+              <Link to="/stats" className={`menu-link ${isActive('/stats') ? 'active' : ''}`}>
+                <span className="menu-link-icon">
+                  <FaTableList />
+                </span>
+                <span className="menu-link-text">Stats</span>
+              </Link>
+            </li>
             
           </ul>
         </div>
@@ -77,7 +90,7 @@ const Sidebar = () => {
             <li className="menu-item">
               <Link to="/settings" className={`menu-link ${isActive('/settings') ? 'active' : ''}`}>
                 <span className="menu-link-icon">
-                  <IoSettingsOutline />
+                  <IoMdSettings />
                 </span>
                 <span className="menu-link-text">Settings</span>
               </Link>

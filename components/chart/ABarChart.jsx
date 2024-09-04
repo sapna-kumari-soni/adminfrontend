@@ -8,112 +8,76 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-// import { ThemeContext } from "../../src/context/ThemeContext";
 import { FaArrowUpLong } from "react-icons/fa6";
 import "./Chart.css";
 
 const data = [
-  {
-    month: "Jan",
-    loss: 70,
-    profit: 100,
-  },
-  {
-    month: "Feb",
-    loss: 55,
-    profit: 85,
-  },
-  {
-    month: "Mar",
-    loss: 35,
-    profit: 90,
-  },
-  {
-    month: "April",
-    loss: 90,
-    profit: 70,
-  },
-  {
-    month: "May",
-    loss: 55,
-    profit: 80,
-  },
-  {
-    month: "Jun",
-    loss: 30,
-    profit: 50,
-  },
-  {
-    month: "Jul",
-    loss: 32,
-    profit: 75,
-  },
-  {
-    month: "Aug",
-    loss: 62,
-    profit: 86,
-  },
-  {
-    month: "Sep",
-    loss: 55,
-    profit: 78,
-  },
-  
+  { agent: "Agent A", expectedSales: 150 },
+  { agent: "Agent B", expectedSales: 200 },
+  { agent: "Agent C", expectedSales: 170 },
+  { agent: "Agent D", expectedSales: 210 },
+  { agent: "Agent E", expectedSales: 790 },
+  { agent: "Agent F", expectedSales: 520 },
+  { agent: "Agent G", expectedSales: 440 },
+  { agent: "Agent H", expectedSales: 730 },
+  { agent: "Agent I", expectedSales: 350 },
 ];
 
 const ABarChart = () => {
-
   const formatTooltipValue = (value) => {
-    return `${value}k`;
+    return `$${value}k`;
   };
 
   const formatYAxisLabel = (value) => {
-    return `${value}k`;
-  };
-
-  const formatLegendValue = (value) => {
-    return value.charAt(0).toUpperCase() + value.slice(1);
+    return `$${value}k`;
   };
 
   return (
     <div className="bar-chart">
       <div className="bar-chart-info">
-        <h5 className="bar-chart-title">Sales</h5>
-        {/* <div className="chart-info-data">
-          <div className="info-data-value">$50.4K</div>
-          <div className="info-data-text">
-            <FaArrowUpLong />
-            <p>5% than last month.</p>
-          </div>
-        </div> */}
+        <h5 className="bar-chart-title">XYZ Sales</h5>
       </div>
       <div className="bar-chart-wrapper">
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height={500}>
           <BarChart
             width={500}
             height={200}
             data={data}
             margin={{
-              top: 5,
-              right: 5,
-              left: 0,
-              bottom: 5,
+              top: 20,
+              right: 30,
+              left: 60,
+              bottom: 60,
             }}
           >
             <XAxis
               padding={{ left: 10 }}
-              dataKey="month"
+              dataKey="agent"
               tickSize={0}
-              // axisLine={false}
               tick={{ fill: "#676767", fontSize: 14 }}
+              label={{  
+                value: "Agents",
+                position: "bottom",
+                offset: 20,  // Increased offset for better spacing
+                style: { fontSize: 16, fill: "#333" },
+              }}
+
             />
             <YAxis
+              domain={[0, 900]}
               padding={{ bottom: 10, top: 10 }}
               tickFormatter={formatYAxisLabel}
-              tickCount={6}
-              // axisLine={false}
+              tickCount={10}
               tickSize={0}
               tick={{ fill: "#676767" }}
+              label={{  
+                value: "Expected Sales",
+                angle: -90,
+                position: "left",
+                offset: 40,  // Increased offset for better spacing
+                style: { fontSize: 16, fill: "#333" },
+              }}
+
             />
             <Tooltip
               formatter={formatTooltipValue}
@@ -124,20 +88,11 @@ const ABarChart = () => {
               iconSize={10}
               verticalAlign="top"
               align="right"
-              formatter={formatLegendValue}
+              wrapperStyle={{ marginTop: 50 }}
             />
             <Bar
-              dataKey="profit"
-              fill="#475be8"
-              activeBar={false}
-              isAnimationActive={false}
-              barSize={24}
-              radius={[4, 4, 4, 4]}
-            />
-            <Bar
-              dataKey="loss"
-              fill="#e3e7fc"
-              activeBar={false}
+              dataKey="expectedSales"
+              fill="#5f617a"
               isAnimationActive={false}
               barSize={24}
               radius={[4, 4, 4, 4]}

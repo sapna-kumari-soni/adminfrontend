@@ -26,9 +26,9 @@ const ReportPage = () => {
     <div className="report-page">
       <Profile />
       <SearchBar onSearch={setSearchTerm} users={sampleReports}/>
-      <button className="stats-button" onClick={handleStatsClick}>
+      {/* <button className="stats-button" onClick={handleStatsClick}>
         Stats
-      </button>
+      </button> */}
     </div>
   );
 };

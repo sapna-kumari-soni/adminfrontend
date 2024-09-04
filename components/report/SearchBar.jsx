@@ -1,36 +1,62 @@
-// // src/components/SearchBar.js
-// import React from 'react';
-// import './SearchBar.css';
 
-// const SearchBar = ({ onSearch }) => {
-//   const handleChange = (event) => {
-//     onSearch(event.target.value);
-//   };
-
-//   return (
-//     <div className="search-bar">
-//       <input
-//         type="text"
-//         placeholder="Search by name..."
-//         onChange={handleChange}
-//       />
-//     </div>
-//   );
-// };
-
-// export default SearchBar;
-// src/components/SearchBar.js
-
-// src/components/SearchBar.js
 import React, { useState, useEffect } from 'react';
 import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai'; // Icons for active/inactive status
+import { FaCircle } from "react-icons/fa";
 import './SearchBar.css'; // Import CSS for dropdown styling
 import { useNavigate } from 'react-router-dom'; 
 
 const SearchBar = ({ onSearch, users }) => {
+  const [user, setUser] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [showDropdown, setShowDropdown] = useState(false); 
   const navigate = useNavigate(); 
+
+  useEffect(() => {
+    // Replace this with an actual API call
+    setUser([
+      { name: 'Natalia Jackson', status: 'available' },
+      { name: 'Sam K', status: 'busy' },
+      { name: 'Jack Wilson', status: 'offline' },
+      { name: 'Garry Porter', status: 'available' },
+      { name: 'Austin Henderson', status: 'busy' },
+      { name: 'Isaac Parker', status: 'offline' },
+      { name: 'Linda Russel', status: 'available' },
+      { name: 'Natalia ackson', status: 'available' },
+      { name: 'Sam K', status: 'busy' },
+      { name: 'Jack Wilson', status: 'offline' },
+      { name: 'Garry Porter', status: 'available' },
+      { name: 'Austin Henderson', status: 'busy' },
+      { name: 'Isaac Parker', status: 'offline' },
+      { name: 'Linda Russel', status: 'available' },
+      // Add more agents as needed
+    ]);
+  }, []);
+
+
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (!event.target.closest('.search-bar-container')) {
+  //       setShowDropdown(false);
+  //     }
+  //   };
+  //   document.addEventListener('mousedown', handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //   };
+  // }, []);
+
+  useEffect(() => {
+    if (searchTerm === '') {
+      setFilteredUsers([]);
+    } else {
+      setFilteredUsers(
+        user.filter((u) =>
+          u.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    }
+  }, [searchTerm, user]);
 
   const handleChange = (event) => {
     const value = event.target.value;
@@ -39,24 +65,16 @@ const SearchBar = ({ onSearch, users }) => {
     setShowDropdown(true);
   };
 
-  const handleClickOutside = (event) => {
-    if (!event.target.closest('.search-bar-container')) {
-      setShowDropdown(false);
-    }
+   const handleUserSelect = (selectedUser) => {
+    setSearchTerm(selectedUser.name); // Set the input to the selected user's name
+    setShowDropdown(false); // Close dropdown after selection
   };
 
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  const filteredUsers = users.filter(user =>
-    user.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // const filteredUsers = users.filter(user =>
+  //   user.name.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
   const handleSearchClick = () => {
-    navigate('/results'); // Navigate to the 'results' page
+    navigate('/results',  { state: { search: searchTerm } });// Navigate to the 'results' page
   };
 
   return (
@@ -68,24 +86,27 @@ const SearchBar = ({ onSearch, users }) => {
         placeholder="Search users..."
         className="search-input"
         onFocus={() => setShowDropdown(true)}
+        onBlur={() => setTimeout(() => setShowDropdown(false), 200)} // Close dropdown after blur with a delay to allow item click
+
       />
-      <button className='search-bar-btn' onClick={handleSearchClick}>Search</button>
       {showDropdown && (
         <div className="dropdown-list">
           {filteredUsers.length > 0 ? (
-            filteredUsers.map(user => (
-              <div key={user.id} className="dropdown-item">
+            filteredUsers.map((user,index) => (
+              <div key={index} className="dropdown-item" onClick={() => handleUserSelect(user)} >
                 <span className="dropdown-item-name">{user.name}</span>
-                <span className={`dropdown-item-status ${user.status.toLowerCase()}`}>
-                  {user.status === 'Active' ? <AiOutlineCheck /> : <AiOutlineClose />}
+                <span className={`dropdown-item-status ${user.status}`}>
+                  {/* {user.status === 'Active' ? <AiOutlineCheck /> : <AiOutlineClose />} */}
+                  <FaCircle />
                 </span>
               </div>
             ))
-          ) : (
+           ) : (
             <div className="dropdown-item">No users found</div>
-          )}
+          )} 
         </div>
       )}
+      <button className='search-bar-btn' onClick={handleSearchClick}>Search</button>
     </div>
   );
 };

@@ -110,31 +110,31 @@
 }
 
 .edit-button {
-  background-color: #0056b3;
+  background-color: #424457;
   color: #fff;
 }
 
 .edit-button:hover {
-  background-color: #5fc6d1;
+  background-color: #5f617a;
 }
 
 .save-button {
-  background-color: #36afeb;
+  background-color: #424457;
   color: #fff;
 }
 
 .save-button:hover {
-  background-color: #5fc6d1;
+  background-color: #5f617a;
 }
 
 .cancel-button {
-  background-color: #36afeb;
+  background-color: #424457;
   color: #fff;
   margin-left: 10px;
 }
 
 .cancel-button:hover {
-  background-color: #5fc6d1;
+  background-color: #5f617a;
 }
 
 .edit-form {

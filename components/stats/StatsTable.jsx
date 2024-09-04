@@ -73,7 +73,7 @@ const StatsTable = () => {
     // Simulate delay to mimic API call
     setTimeout(() => {
       setData(mockData);  // Set fetched data to state
-      setLoading(false);  // Set loading to false once data is fetched
+      // setLoading(false);  // Set loading to false once data is fetched
     }, 1000);
   }, []);
   const handleSearchClick = () => {
@@ -94,10 +94,10 @@ const StatsTable = () => {
   return (
     <div className="stats-table-container">
       <h2 className='stats-table-title'>Agent Stats</h2>
-      <button className='search-bar-btn' onClick={handleSearchClick}>Manually Edit</button>
-      {loading ? (
+      <button className='search-bar-btn stats-btn' onClick={handleSearchClick}>Manually Edit</button>
+      {/* {loading ? (
         <p>Loading data...</p>  // Display loading message while fetching data
-      ) : (
+      ) : ( */}
         <table className="stats-table">
           <thead>
             <tr>
@@ -152,7 +152,7 @@ const StatsTable = () => {
             ))}
           </tbody>
         </table>
-      )}
+      {/* )} */}
     </div>
   );
 };

@@ -1,10 +1,11 @@
+
 .sidebar {
     position: fixed;
     left: 0;
     top: 0;
     width: 260px;
     height: 100%;
-    background-color: #2e2e48;
+    background-color: #fff;
     padding: 20px 14px;
     box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
     display: flex;
@@ -48,7 +49,7 @@
     .sidebar-top{
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       margin-bottom: 28px;
       padding-bottom: 4px;
       border-bottom: 1px solid #575777;
@@ -57,18 +58,17 @@
     .sidebar-brand{
       display: flex;
       align-items: center;
-      column-gap: 6px;
+      /* column-gap: 6px; */
     }
   
-    .sidebar-brand-text{
-      text-transform: uppercase;
-      font-weight: 1000;
-      color: #5363de;
-      margin: 20px 15px;
-      font-size: 1.5rem;
-  
+    .sidebar-brand-logo img{
+      width: 100px;
+      height: 100px;
+      
       @media(max-width: 1200px){
-          display: none;
+          display: inline-block;
+          width: 60px;
+          height: 60px;
       }
   
       @media(max-width: 768px){
@@ -77,14 +77,14 @@
     }
   
     .sidebar-close-btn{
-      background-color: #1e1ebb;
+      background-color: #fbfbfc;
       width: 28px;
       height: 28px;
       box-shadow: 0px 0px 4px rgba(71, 91, 232, 0.04);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #bdbdbd;
+      color: #080808;
       border-radius: 2px;
       transition: all 300ms ease-in-out;
       display: none;
@@ -92,7 +92,8 @@
       @media(max-width: 768px){
           display: inline-flex;
       }
-  
+      
+      
       &:hover{
           opacity: 0.8;
       }
@@ -121,7 +122,7 @@
       column-gap: 11px;
       padding: 12px;
       border-radius: 12px;
-      color: #808191;
+      color: black;
       transition: all 300ms ease-in-out;
   
       @media(max-width: 1200px){
@@ -147,7 +148,7 @@
       }
   
       &.active{
-          background-color: #475be8;
+          background-color: #424457;
           color: #ffffff;
           box-shadow: 0px 0px 4px rgba(71, 91, 232, 0.04);
       }
@@ -160,7 +161,7 @@
   
     .menu-link-text{
       font-family: "Manrope", sans-serif;
-      font-weight: 500;
+      font-weight: 600;
       
       @media(max-width: 1200px){
           display: none;

@@ -9,20 +9,20 @@
     } */
   }
   
-  .bar-chart {
+  .bar-chart , .pie-chart {
     background-color: #fff;
     padding: 16px 16px 6px 16px;
     border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
     position: relative;
   
     @media (max-width: 768px) {
       padding: 12px;
     }
   
-    .bar-chart-wrapper {
+    .bar-chart-wrapper ,.pie-chart-wrapper {
       width: 100%;
-      height: 240px;
+      height: auto;
   
       .recharts-wrapper {
         @media (max-width: 1400px) {
@@ -32,33 +32,15 @@
     }
   
     .bar-chart-info {
+      text-align: center;
       margin-bottom: 32px;
     }
   
     .bar-chart-title {
       margin-bottom: 12px;
-      font-size: 18px;
+      font-size: 1.5rem;
       font-weight: 700;
-      color: #292929;
-    }
-  
-    .chart-info-data {
-      display: flex;
-      align-items: center;
-      column-gap: 16px;
-    }
-  
-    .info-data-value {
-      color: #292929;
-      font-size: 24px;
-      font-weight: 700;
-    }
-  
-    .info-data-text {
-      display: flex;
-      align-items: center;
-      column-gap: 3px;
-      color:#4ce13f;
+      color: #312e2e;
     }
   
     .recharts-default-legend {
@@ -71,9 +53,45 @@
       font-size: 14px;
       font-weight: 600;
     }
+    /* .pie-chart {
+      width: 100%; 
+      height: 100%;
+      margin-bottom: 30px; 
+    } */
+    
+    .pie-chart-info {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .pie-chart-title {
+      font-size: 1.5rem;
+      color: #333;
+      margin: 0;
+    }
+    
+    
+    /* Tooltip and Legend Adjustments for PieChart */
+    .pie-chart .recharts-default-tooltip {
+      border-radius: 4px;
+      background-color: #ffffff;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+      font-size: 0.9rem;
+      color: #333;
+    }
+    
+    
+    
+    .pie-chart .recharts-legend-item {
+      margin-bottom: 12px; /* Add space between legend items */
+      display: flex; /* Use flex to align items properly */
+      align-items: center; 
+    }
+    
   }
   
-  .progress-bar {
+  /* .progress-bar {
     padding: 16px;
     border-radius: 5px;
     box-shadow:  rgba(0, 0, 0, 0.02) 0px 4px 12px;
@@ -123,5 +141,13 @@
       width: 0;
       border-radius: 100vh;
       background-color: #475be8;
-    }
-  }
+    } 
+  } */
+  
+
+  
+  /* Tooltip and legend adjustments */
+
+  
+  
+ 

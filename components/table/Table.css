@@ -1,7 +1,7 @@
 .content-area-table {
     background: #fff;
     border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.02) 0px 4px 12px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
     padding: 12px 16px;
   
     @media (max-width: 768px) {
@@ -45,7 +45,7 @@
     
     .offer-count {
       flex-shrink: 0; /* Prevent shrinking */
-      text-align: right; /* Align count to the right */
+      text-align: right;  
     }
     
     /* .table-search-container {

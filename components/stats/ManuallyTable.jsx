@@ -1,140 +1,89 @@
-// // src/components/ReportTable.js
-// import React from 'react';
-// import './ReportTable.css';
-
-// const ReportTable = ({ reports }) => {
-//   return (
-//     <table className="report-table">
-//       <thead>
-//         <tr>
-//           <th>ID</th>
-//           <th>Name</th>
-//           <th>Address</th>
-//           <th>Status</th>
-//         </tr>
-//       </thead>
-//       <tbody>
-//         {reports.map(report => (
-//           <tr key={report.id}>
-//             <td>{report.id}</td>
-//             <td>{report.name}</td>
-//             <td>{report.address}</td>
-//             <td>{report.status}</td>
-//           </tr>
-//         ))}
-//       </tbody>
-//     </table>
-//   );
-// };
-
-// export default ReportTable;
-
-// src/EditableTable.js
-import React, { useState, useEffect } from "react";
-import "./ManuallyTable.css"; // Import the CSS file for styling
+import React, { useState } from 'react';
+import './ManuallyTable.css'; // Import the CSS file for styling
 
 const ManuallyTable = () => {
-  // const [data, setData] = useState([]); // State to store table data
-  const [data, setData] = useState([
-    { id: 1, name: "John Doe", email: "john.doe@example.com", phone: "123-456-7890" },
-    { id: 2, name: "Jane Smith", email: "jane.smith@example.com", phone: "234-567-8901" },
-    { id: 3, name: "Mike Johnson", email: "mike.johnson@example.com", phone: "345-678-9012" },
-    { id: 4, name: "Emily Davis", email: "emily.davis@example.com", phone: "456-789-0123" },
-    { id: 5, name: "Robert Brown", email: "robert.brown@example.com", phone: "567-890-1234" },
-  ]);
-  const [editIdx, setEditIdx] = useState(-1); // State to track which row is being edited
 
+  const data = [
+    { Name: 'Nicholas', '>1 min': 2, '>3 min': 5, '>5 min': 6, '>7 min': 8, '>10 min': 2, '>20 min': 2, 'Total Talk time': '1hr:45' },
+    { Name: 'Jennie', '>1 min': 2, '>3 min': 5, '>5 min': 6, '>7 min': 8, '>10 min': 2, '>20 min': 2, 'Total Talk time': '2hr:45' },
+    { Name: 'Austin', '>1 min': 2, '>3 min': 5, '>5 min': 6, '>7 min': 8, '>10 min': 2, '>20 min': 2, 'Total Talk time': '2hr:05' },
+    { Name: 'Rose', '>1 min': 2, '>3 min': 5, '>5 min': 6, '>7 min': 8, '>10 min': 2, '>20 min': 2, 'Total Talk time': '1hr:45' },
+    { Name: 'Jack', '>1 min': 2, '>3 min': 5, '>5 min': 6, '>7 min': 8, '>10 min': 2, '>20 min': 2, 'Total Talk time': '1hr:45' },
+  ];
 
-  // Fetch data from an external source (API, database, etc.)
-  // useEffect(() => {
-  //   // Simulate fetching data from an external source
-  //   const fetchData = async () => {
-  //     const response = await fetch("https://jsonplaceholder.typicode.com/users");
-  //     const result = await response.json();
-  //     setData(result);
-  //   };
-  //   fetchData();
-  // }, []);
+  const [filteredData, setFilteredData] = useState(data);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const rowsPerPage = 5;
 
-  // Handle changes to table cells
-  const handleChange = (e, index, key) => {
-    const newData = [...data];
-    newData[index][key] = e.target.value;
-    setData(newData);
+  const handleFilterChange = (e, key) => {
+    const value = e.target.value.toLowerCase();
+    const newFilteredData = data.filter(row => 
+      row[key].toString().toLowerCase().includes(value)
+    );
+    setFilteredData(newFilteredData);
   };
 
-  // Save changes and exit editing mode
-  const handleSave = () => {
-    setEditIdx(-1);
-    console.log("Data saved: ", data); // Here, you would typically send updated data to the server
+  const handleSort = (key) => {
+    const sortedData = [...filteredData].sort((a, b) => {
+      if (a[key] < b[key]) return -1;
+      if (a[key] > b[key]) return 1;
+      return 0;
+    });
+    setFilteredData(sortedData);
   };
 
-  // Cancel editing mode without saving
-  const handleCancel = () => {
-    setEditIdx(-1);
-  };
+  // const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
+
+  // Calculate paginated rows
+  // const indexOfLastRow = currentPage * rowsPerPage;
+  // const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  // const currentRows = filteredData.slice(indexOfFirstRow, indexOfLastRow);
 
   return (
-    <div className="editable-table-container">
-      <table className="editable-table">
+    <div>
+      <h2>Manually Edit Table</h2>
+      {/* Filters */}
+      <div className="filters">
+        {Object.keys(data[0]).map((key) => (
+          <input
+            key={key}
+            placeholder={`Filter by ${key}`}
+            onChange={(e) => handleFilterChange(e, key)}
+          />
+        ))}
+      </div>
+
+      {/* Table */}
+      <div className='table-container'>
+      <table className="manually-table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Actions</th>
+            {Object.keys(data[0]).map((key) => (
+              <th key={key} onClick={() => handleSort(key)}>
+                {key}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
-          {data.map((row, index) => (
-            <tr key={row.id}>
-              <td>
-                {editIdx === index ? (
-                  <input
-                    type="text"
-                    value={row.name}
-                    onChange={(e) => handleChange(e, index, "name")}
-                  />
-                ) : (
-                  row.name
-                )}
-              </td>
-              <td>
-                {editIdx === index ? (
-                  <input
-                    type="text"
-                    value={row.email}
-                    onChange={(e) => handleChange(e, index, "email")}
-                  />
-                ) : (
-                  row.email
-                )}
-              </td>
-              <td>
-                {editIdx === index ? (
-                  <input
-                    type="text"
-                    value={row.phone}
-                    onChange={(e) => handleChange(e, index, "phone")}
-                  />
-                ) : (
-                  row.phone
-                )}
-              </td>
-              <td>
-                {editIdx === index ? (
-                  <>
-                    <button onClick={handleSave}>Save</button>
-                    <button onClick={handleCancel}>Cancel</button>
-                  </>
-                ) : (
-                  <button onClick={() => setEditIdx(index)}>Edit</button>
-                )}
-              </td>
+          {filteredData.map((row, index) => (
+            <tr key={index}>
+              {Object.values(row).map((val, i) => (
+                <td key={i}>{val}</td>
+              ))}
             </tr>
           ))}
         </tbody>
       </table>
+
+      {/* Pagination
+      <div className="pagination">
+        {Array.from({ length: Math.ceil(filteredData.length / rowsPerPage) }, (_, i) => (
+          <button key={i} onClick={() => handlePageChange(i + 1)} className={i + 1 === currentPage ? 'active' : ''}>
+            {i + 1}
+          </button>
+        ))} */}
+      </div>
     </div>
   );
 };

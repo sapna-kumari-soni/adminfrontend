@@ -89,10 +89,10 @@
   .report-table tbody td {
     border-bottom: 1px solid #ddd;
   }
-  .stats-button {
-    margin-top: 20px;
+  /* .stats-button {
+    margin: 10px;
     padding: 10px 20px;
-    background-color: #0056b3;
+    background-color: #424457;
     color: white;
     border: none;
     border-radius: 5px;
@@ -100,8 +100,8 @@
   }
   
   .stats-button:hover {
-    background-color: #5fc6d1;
-  }
+    background-color: #5f617a;
+  } */
   
   @media (max-width: 768px) {
     .report-page {

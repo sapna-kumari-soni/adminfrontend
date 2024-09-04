@@ -1,20 +1,4 @@
-/* src/components/SearchBar.css
-.search-bar {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .search-bar input {
-    padding: 10px;
-    width: 100%;
-    max-width: 400px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-   */
-/* src/components/SearchBar.css */
 
-/* src/components/SearchBar.css */
 
 .search-bar-container {
   position: relative;
@@ -36,10 +20,10 @@
 .search-bar-btn{
   width:50%;
   border-radius: 8px;
-  background-color: #0056b3;
+  background-color: #424457;
 }
 .search-bar-btn:hover{
-  background-color: #5fc6d1;
+  background-color: #5f617a;
 }
 .search-input:focus {
   border-color: #007bff;
@@ -57,18 +41,19 @@
   border: 2px solid #ddd;
   background: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: opacity 0.3s, transform 0.3s;
+  z-index: 10;
+  /* z-index: 1000; */
+  /* opacity: 0; */
+  /* visibility: hidden; */
+  /* transform: translateY(10px); */
+  /* transition: opacity 0.3s, transform 0.3s; */
 }
 
-.dropdown-list.show {
+/* .dropdown-list.show {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
-}
+} */
 
 .dropdown-item {
   padding: 12px 16px;
@@ -91,12 +76,31 @@
 
 .dropdown-item-status {
   font-size: 20px;
+  /* font-size: 14px; Font size for status */
+  color: #666; /* Gray color for status */
+  display: flex; /* Flexbox for icon and status */
+  align-items: center; /* Center items vertically */
 }
 
-.dropdown-item-status.active {
+.dropdown-item-status.available {
   color: #28a745; /* Green for active status */
 }
 
-.dropdown-item-status.inactive {
+.dropdown-item-status.offline {
   color: #dc3545; /* Red for inactive status */
+}
+.dropdown-item-status.busy {
+  color: #d18118; /* Red for inactive status */
+}
+.dropdown-item-dot{
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+}
+
+.no-users-found {
+  padding: 10px; /* Padding for 'no users found' message */
+  color: #666; /* Text color */
+  text-align: center; /* Center-align the message */
+  font-style: italic; /* Italic style for emphasis */
 }
