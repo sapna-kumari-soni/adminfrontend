@@ -4,6 +4,7 @@ import SearchBar from './SearchBar';
 import { useNavigate } from 'react-router-dom';
 import './ReportPage.css';
 import Profile from '../profile/Profile';
+import Cards from '../cards/Cards';
 
 const sampleReports = [
   { id: 1, name: 'John Doe', address: '123 Elm St', status: 'Active' },
@@ -24,11 +25,10 @@ const ReportPage = () => {
 
   return (
     <div className="report-page">
+      <h1>DashBoard</h1>
+      <Cards />
       <Profile />
       <SearchBar onSearch={setSearchTerm} users={sampleReports}/>
-      {/* <button className="stats-button" onClick={handleStatsClick}>
-        Stats
-      </button> */}
     </div>
   );
 };

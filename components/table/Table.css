@@ -30,30 +30,9 @@
       border: 1px solid #ccc;
       border-radius: 4px;
       /* margin-right: 20px; Space between select box and title */
+
     }
-    .table-select option{
-      display: flex;
-      justify-content: space-between; /* Aligns the text and count */
-      padding: 8px;
-      border-bottom: 1px solid #eee;
-      cursor: pointer;
-    }
-    .offer-text {
-      flex: 1; /* Allow text to take available space */
-      text-align: left; /* Align text to the left */
-    }
-    
-    .offer-count {
-      flex-shrink: 0; /* Prevent shrinking */
-      text-align: right;  
-    }
-    
-    /* .table-search-container {
-      display: flex;
-      align-items: center;
-      position: relative;
-      width: 200px;
-    } */
+  
     .table-search-container {
       display: flex;
       align-items: center;

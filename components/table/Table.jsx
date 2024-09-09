@@ -70,7 +70,7 @@ const TABLE_DATA = [
     date: "31-08-2024",
     name: "Sapna",
     mobile: "8252342435",
-    email: "sapnakr12@gmail.com",
+    email: "sakshi23@gmail.com",
     offerStartDate: "02-08-2024",
     offer: "3",
     qty: "4",
@@ -87,6 +87,8 @@ const Table = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [offerCounts, setOfferCounts] = useState(getOfferCounts());
   const [editIdx, setEditIdx] = useState(-1); // State to track which row is being edited
+  const [data, setData] = useState(TABLE_DATA);
+  const [filteredData, setFilteredData] = useState(TABLE_DATA);
 
   // useEffect(() => {
   //   // Fetch data from an external source (e.g., an API)
@@ -158,8 +160,19 @@ const Table = () => {
   };
 
   // Handle search button click
-  const handleSearchClick = () => {
-    // You can add additional search logic here if needed
+  const handleSearchClick = (event) => {
+    const searchValue = event.target.value;
+    setSearchTerm(searchValue);
+    if (searchTerm) {
+      // Filter data by email based on search term
+      const filtered = data.filter((item) =>
+        item.email.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredData(filtered);
+    } else {
+      // Reset filtered data when search term is empty
+      setFilteredData(data);
+    }
   };
   // Handle changes to table cells
   const handleChange = (e, index, key) => {
@@ -185,31 +198,31 @@ const Table = () => {
           <select className="table-select" onChange={handleFilterChange}>
             <option value="">Select </option>
             <option value="pending">
-              <span className='offer-text'>Pending Offers</span> 
-              <span className='offer-count'>{offerCounts.pending || 0}</span>
+              Pending Offers--
+              <span >{offerCounts.pending || 0}</span>
             </option>
             <option value="expired">
-              Expired Offers 
+              Expired Offers-- 
               <span>{offerCounts.expired || 0}</span>
             </option>
             <option value="rejected">
-              Rejected 
+              Rejected-- 
               <span>{offerCounts.rejected || 0}</span>
             </option>
             <option value="connected">
-              Connected 
+              Connected-- 
               <span>{offerCounts.connected || 0}</span>
             </option>
             <option value="not-connected">
-              Not Connected 
+              Not Connected-- 
               <span>{offerCounts["not-connected"] || 0}</span>
             </option>
             <option value="ni-without-offer">
-              NI Without Offer 
+              NI Without Offer-- 
               <span>{offerCounts["ni-without-offer"] || 0}</span>
             </option>
             <option value="paid">
-              Paid 
+              Paid-- 
               <span>{offerCounts.paid || 0}</span>
             </option>
           </select>
@@ -218,7 +231,7 @@ const Table = () => {
           <input 
           type="text" 
           className="table-search" 
-          placeholder="Search..." 
+          placeholder="Search by Email..." 
           value={searchTerm}
           onChange={handleSearchChange}
           />
@@ -238,14 +251,29 @@ const Table = () => {
             </tr>
           </thead>
           <tbody>
-            {TABLE_DATA?.map((dataItem,index) => {
+          {filteredData.map((dataItem, index) => {
+              return (
+                <tr key={index}>
+                  {Object.keys(dataItem).map((key) => (
+                    <td key={key}>
+                      {editIdx === index ? (
+                        <input
+                          type="text"
+                          value={dataItem[key]}
+                          onChange={(e) => handleChange(e, index, key)}
+                        />
+                      ) : (
+                        dataItem[key]
+                      )}
+                    </td>
+                  ))}
+            {/* {TABLE_DATA?.map((dataItem,index) => {
               return (
                 <tr key={index}>
                   <td>{dataItem.contact}</td>
                   <td>{dataItem.date}</td>
                   <td>{dataItem.name}</td>
                   <td>{dataItem.mobile}</td>
-                  {/* <td>{dataItem.email}</td> */}
                   <td>
                 {editIdx === index ? (
                   <input
@@ -262,21 +290,8 @@ const Table = () => {
                   <td>{dataItem.qty}</td>
                   <td>{dataItem.type}</td>
                   <td>{dataItem.total}</td>
-                  <td>{dataItem.endDate}</td>
-                  {/* <td>
-                    <div className="dt-status">
-                      <span
-                        className={`dt-status-dot dot-${dataItem.status}`}
-                      ></span>
-                      <span className="dt-status-text">{dataItem.status}</span>
-                    </div>
-                  </td> */}
-                  {/* <td>${dataItem.amount.toFixed(2)}</td> */}
-                  {/* <td className="dt-cell-action">
-                    <button type="button" className="action-dropdown-btn">
-                    <AiFillEdit/><span className='button-font'>Edit</span>
-                    </button>
-                  </td> */}
+                  <td>{dataItem.endDate}</td> */}
+                  
                   <td className="dt-cell-action">
                   {editIdx === index ? (
                   <>

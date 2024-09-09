@@ -42,7 +42,7 @@ const SalesPieChart = () => {
         <h5 className="pie-chart-title">Sales by Country</h5>
       </div>
       <div className="pie-chart-wrapper">
-        <ResponsiveContainer width="100%" height={400}>
+        <ResponsiveContainer width="100%" height={500}>
           <PieChart>
             <Pie
               data={data}
@@ -60,12 +60,12 @@ const SalesPieChart = () => {
             </Pie>
             <Tooltip formatter={formatTooltipValue} />
             <Legend
-               layout="vertical"        /* Legend layout as vertical */
+               layout="vertically"        /* Legend layout as vertical */
                verticalAlign="middle"   /* Align legend vertically in the middle */
                align="right"            /* Align legend to the right */
                iconType="circle"
                iconSize={10}
-               wrapperStyle={{ paddingLeft: 30, maxHeight: 300 }}
+               wrapperStyle={{ maxHeight: 300}}
             />
           </PieChart>
         </ResponsiveContainer>
